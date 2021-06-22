@@ -69,7 +69,6 @@ namespace TicTacToe
 
         //Primitive OBBSESSION - CODE SMELL
         // FEATURE ENVY
-        //Innappropiate intimicy
         //Message Chains
         
         public char Winner()
@@ -85,7 +84,7 @@ namespace TicTacToe
 
         private bool IsWinningRow(int x)
         {
-            return _board.IsRowTaken(x) && HasRowGotSameSymbol(x);
+            return _board.IsRowTaken(x) && _board.HasRowGotSameSymbol(x);
         }
 
         private char GetSymbolAtPosition(int x, int y)
@@ -93,14 +92,7 @@ namespace TicTacToe
             return _board.TileAt(x, y).Symbol;
         }
 
-        private bool HasRowGotSameSymbol(int x)
-        {
-            return _board.TileAt(x, 0).Symbol ==
-                   _board.TileAt(x, 1).Symbol &&
-                   _board.TileAt(x, 2).Symbol ==
-                   _board.TileAt(x, 1).Symbol;
-        }
 
-        
+
     }
 }

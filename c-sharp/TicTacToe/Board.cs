@@ -7,7 +7,6 @@ namespace TicTacToe
     public class Board
     {
         private List<Tile> _plays = new List<Tile>();
-        private Board _board;
 
         public Board()
         {
@@ -39,6 +38,14 @@ namespace TicTacToe
             return TileAt(x, 0).Symbol != ' ' &&
                    TileAt(x, 1).Symbol != ' ' &&
                    TileAt(x, 2).Symbol != ' ';
+        }
+
+        public bool HasRowGotSameSymbol(int x)
+        {
+            return TileAt(x, 0).Symbol ==
+                   TileAt(x, 1).Symbol &&
+                   TileAt(x, 2).Symbol ==
+                   TileAt(x, 1).Symbol;
         }
     }
 }
