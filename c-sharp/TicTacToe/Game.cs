@@ -68,29 +68,23 @@ namespace TicTacToe
         }
 
         //Primitive OBBSESSION - CODE SMELL
-        // FEATURE ENVY
         //Message Chains
         
         public char Winner()
         {
             for (int x = 0; x <= 2; x++)
             {
-                if (!IsWinningRow(x)) continue;
-                return GetSymbolAtPosition(x, 0);
+                if (_board.IsWinningRow(x))
+                {
+                    return _board.GetSymbolAtPosition(x, 0);
+                }
             }
 
             return ' ';
         }
 
-        private bool IsWinningRow(int x)
-        {
-            return _board.IsRowTaken(x) && _board.HasRowGotSameSymbol(x);
-        }
+        
 
-        private char GetSymbolAtPosition(int x, int y)
-        {
-            return _board.TileAt(x, y).Symbol;
-        }
 
 
 

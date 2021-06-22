@@ -47,5 +47,14 @@ namespace TicTacToe
                    TileAt(x, 2).Symbol ==
                    TileAt(x, 1).Symbol;
         }
+
+        public bool IsWinningRow(int x)
+        {
+            return IsRowTaken(x) && HasRowGotSameSymbol(x);
+        }
+        public char GetSymbolAtPosition(int x, int y)
+        {
+            return TileAt(x, y).Symbol;
+        }
     }
 }
