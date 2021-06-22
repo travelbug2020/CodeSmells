@@ -56,5 +56,10 @@ namespace TicTacToe
         {
             return TileAt(x, y).Symbol;
         }
+        public bool IsPositionAlreadyPlayed(int x, int y)
+        {
+            
+            return TileAt(x, y).Symbol != ' ';
+        }
     }
 }

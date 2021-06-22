@@ -4,7 +4,6 @@ using System.Security.Cryptography.X509Certificates;
 namespace TicTacToe
 {
     // DIVERGANT CHANGE
-    // COMMENTS
     // Large Class
     public class Game
     {
@@ -35,7 +34,7 @@ namespace TicTacToe
                 throw new Exception("Invalid next player");
             }
 
-            if (IsPositionAlreadyPlayed(x, y))
+            if (_board.IsPositionAlreadyPlayed(x, y))
             {
                 throw new Exception("Invalid position");
             }
@@ -44,12 +43,6 @@ namespace TicTacToe
         private bool IsInvalidFirstPlayer(char symbol)
         {
             return IsFirstMove() && IsPlayerO(symbol);
-        }
-
-        private bool IsPositionAlreadyPlayed(int x, int y)
-        {
-            //Message Chain
-            return _board.TileAt(x, y).Symbol != ' ';
         }
 
         private bool IsPlayerRepeated(char symbol)
@@ -68,8 +61,7 @@ namespace TicTacToe
         }
 
         //Primitive OBBSESSION - CODE SMELL
-        //Message Chains
-        
+
         public char Winner()
         {
             for (int x = 0; x <= 2; x++)
