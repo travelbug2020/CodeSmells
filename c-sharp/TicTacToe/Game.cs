@@ -5,6 +5,7 @@ namespace TicTacToe
 {
     // DIVERGANT CHANGE
     // COMMENTS
+    // Large Class
     public class Game
     {
         //PRIMITIVE OBBSESSION
@@ -23,6 +24,7 @@ namespace TicTacToe
 
         private void EnsureValidMove(char symbol, int x, int y)
         {
+            //Switch Statement
             if (IsInvalidFirstPlayer(symbol))
             {
                 throw new Exception("Invalid first player");
@@ -69,19 +71,13 @@ namespace TicTacToe
         // FEATURE ENVY
         //Innappropiate intimicy
         //Message Chains
+        
         public char Winner()
         {
-            if (IsWinningRow(0))
+            for (int x = 0; x <= 2; x++)
             {
-                return GetSymbolAtPosition(0, 0);
-            }
-            if (IsWinningRow(1))
-            {
-                return GetSymbolAtPosition(1, 0);
-            }
-            if (IsWinningRow(2))
-            {
-                return GetSymbolAtPosition(2, 0);
+                if (!IsWinningRow(x)) continue;
+                return GetSymbolAtPosition(x, 0);
             }
 
             return ' ';
@@ -89,7 +85,7 @@ namespace TicTacToe
 
         private bool IsWinningRow(int x)
         {
-            return IsRowTaken(x) && HasRowGotSameSymbol(x);
+            return _board.IsRowTaken(x) && HasRowGotSameSymbol(x);
         }
 
         private char GetSymbolAtPosition(int x, int y)
@@ -105,11 +101,6 @@ namespace TicTacToe
                    _board.TileAt(x, 1).Symbol;
         }
 
-        private bool IsRowTaken(int x)
-        {
-            return _board.TileAt(x, 0).Symbol != ' ' &&
-                   _board.TileAt(x, 1).Symbol != ' ' &&
-                   _board.TileAt(x, 2).Symbol != ' ';
-        }
+        
     }
 }

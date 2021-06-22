@@ -4,10 +4,10 @@ using System.Linq;
 namespace TicTacToe
 {
     // SHOT GUN SURGERY
-    // LARGE CLASS - CODE SMELL
     public class Board
     {
         private List<Tile> _plays = new List<Tile>();
+        private Board _board;
 
         public Board()
         {
@@ -32,6 +32,13 @@ namespace TicTacToe
         {
             //Message Chain
             _plays.Single(tile => tile.X == x && tile.Y == y).Symbol = symbol;
+        }
+
+        public bool IsRowTaken(int x)
+        {
+            return TileAt(x, 0).Symbol != ' ' &&
+                   TileAt(x, 1).Symbol != ' ' &&
+                   TileAt(x, 2).Symbol != ' ';
         }
     }
 }
