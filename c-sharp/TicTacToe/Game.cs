@@ -10,7 +10,6 @@ namespace TicTacToe
         //PRIMITIVE OBBSESSION
         private char _lastSymbol = ' ';
         private Board _board = new Board();
-
         //LONG PARAMETER LIST
         //PRIMITIVE OBBSESSION
         //DATA CLUMP
@@ -44,7 +43,6 @@ namespace TicTacToe
             }
         }
 
-
         private bool IsInvalidFirstPlayer(char symbol)
         {
             return IsFirstMove() && IsPlayerO(symbol);
@@ -66,7 +64,6 @@ namespace TicTacToe
         }
 
         //Primitive OBBSESSION - CODE SMELL
-
         public char Winner()
         {
             for (int x = 0; x <= 2; x++)

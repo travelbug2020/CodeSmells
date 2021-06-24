@@ -20,8 +20,7 @@ namespace TicTacToe
             }
         }
         //PRIMITIVE OBBSESSION
-        //DATA CLUMP
-        public Tile TileAt(int x, int y)
+        public Tile CheckTileAt(int x, int y)
         {
             return _plays.Single(tile => tile.X == x && tile.Y == y);
         }
@@ -30,23 +29,23 @@ namespace TicTacToe
         //DATA CLUMPS
         public void AddTileAt(char symbol, int x, int y)
         {
-            //Message Chain
+            //Message Chain ??
             _plays.Single(tile => tile.X == x && tile.Y == y).Symbol = symbol;
         }
 
         public bool IsRowTaken(int x)
         {
-            return TileAt(x, 0).Symbol != ' ' &&
-                   TileAt(x, 1).Symbol != ' ' &&
-                   TileAt(x, 2).Symbol != ' ';
+            return CheckTileAt(x, 0).Symbol != ' ' &&
+                   CheckTileAt(x, 1).Symbol != ' ' &&
+                   CheckTileAt(x, 2).Symbol != ' ';
         }
 
         public bool HasRowGotSameSymbol(int x)
         {
-            return TileAt(x, 0).Symbol ==
-                   TileAt(x, 1).Symbol &&
-                   TileAt(x, 2).Symbol ==
-                   TileAt(x, 1).Symbol;
+            return CheckTileAt(x, 0).Symbol ==
+                   CheckTileAt(x, 1).Symbol &&
+                   CheckTileAt(x, 2).Symbol ==
+                   CheckTileAt(x, 1).Symbol;
         }
 
         public bool IsWinningRow(int x)
@@ -55,11 +54,11 @@ namespace TicTacToe
         }
         public char GetSymbolAtPosition(int x, int y)
         {
-            return TileAt(x, y).Symbol;
+            return CheckTileAt(x, y).Symbol;
         }
         public bool IsPositionAlreadyPlayed(int x, int y)
         {
-            return TileAt(x, y).Symbol != ' ';
+            return CheckTileAt(x, y).Symbol != ' ';
         }
 
         public void CheckIsPositionAlreadyPlayed(int x, int y)
