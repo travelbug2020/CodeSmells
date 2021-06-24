@@ -22,23 +22,28 @@ namespace TicTacToe
         }
 
         private void EnsureValidMove(char symbol, int x, int y)
+        { 
+            CheckIsInvalidFirstPlayer(symbol);
+            CheckIsPlayerRepeated(symbol);
+            _board.CheckIsPositionAlreadyPlayed(x, y);
+        }
+
+        private void CheckIsInvalidFirstPlayer(char symbol)
         {
-            //Switch Statement
             if (IsInvalidFirstPlayer(symbol))
             {
                 throw new Exception("Invalid first player");
             }
+        }
 
+        private void CheckIsPlayerRepeated(char symbol)
+        {
             if (IsPlayerRepeated(symbol))
             {
                 throw new Exception("Invalid next player");
             }
-
-            if (_board.IsPositionAlreadyPlayed(x, y))
-            {
-                throw new Exception("Invalid position");
-            }
         }
+
 
         private bool IsInvalidFirstPlayer(char symbol)
         {

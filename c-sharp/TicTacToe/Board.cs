@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TicTacToe
@@ -58,8 +59,15 @@ namespace TicTacToe
         }
         public bool IsPositionAlreadyPlayed(int x, int y)
         {
-            
             return TileAt(x, y).Symbol != ' ';
+        }
+
+        public void CheckIsPositionAlreadyPlayed(int x, int y)
+        {
+            if (IsPositionAlreadyPlayed(x, y))
+            {
+                throw new Exception("Invalid position");
+            }
         }
     }
 }
