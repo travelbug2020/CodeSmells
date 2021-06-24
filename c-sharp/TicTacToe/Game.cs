@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using static TicTacToe.Player;
+
 //board tile game
 namespace TicTacToe
 {
@@ -11,60 +13,64 @@ namespace TicTacToe
     {
         
         //PRIMITIVE OBBSESSION
-        private char _lastSymbol = ' ';
+        private Player _lastSymbol = EmptySpace;
         private Board _board = new Board();
-        public Dictionary<string, Position> CoordToPositions = new Dictionary<string, Position>();
+        public Dictionary<char,Player> symbolToPlayer = new Dictionary<char, Player>()
+        {
+            {'X', X},
+            {'O', O}
+        };
         //LONG PARAMETER LIST
         //PRIMITIVE OBBSESSION
         //DATA CLUMP
         public void Play(char symbol, int x, int y)
         {
-
-            EnsureValidMove(symbol, x, y);
-            _lastSymbol = symbol;
+            var player = symbolToPlayer[symbol];
+            EnsureValidMove(player, x, y);
+            _lastSymbol = player;
             _board.AddTileAt(symbol, x, y);
         }
 
-        private void EnsureValidMove(char symbol, int x, int y)
+        private void EnsureValidMove(Player player, int x, int y)
         { 
-            CheckIsInvalidFirstPlayer(symbol);
-            CheckIsPlayerRepeated(symbol);
+            CheckIsInvalidFirstPlayer(player);
+            CheckIsPlayerRepeated(player);
             _board.CheckIsPositionAlreadyPlayed(x, y);
         }
 
-        private void CheckIsInvalidFirstPlayer(char symbol)
+        private void CheckIsInvalidFirstPlayer(Player player)
         {
-            if (IsInvalidFirstPlayer(symbol))
+            if (IsInvalidFirstPlayer(player))
             {
                 throw new Exception("Invalid first player");
             }
         }
-        private void CheckIsPlayerRepeated(char symbol)
+        private void CheckIsPlayerRepeated(Player player)
         {
-            if (IsPlayerRepeated(symbol))
+            if (IsPlayerRepeated(player))
             {
                 throw new Exception("Invalid next player");
             }
         }
 
-        private bool IsInvalidFirstPlayer(char symbol)
+        private bool IsInvalidFirstPlayer(Player player)
         {
-            return IsFirstMove() && IsPlayerO(symbol);
+            return IsFirstMove() && IsPlayerO(player);
         }
 
-        private bool IsPlayerRepeated(char symbol)
+        private bool IsPlayerRepeated(Player player)
         {
-            return symbol == _lastSymbol;
+            return player == _lastSymbol;
         }
 
-        private static bool IsPlayerO(char symbol)
+        private static bool IsPlayerO(Player player)
         {
-            return symbol == 'O';
+            return player == O;
         }
 
         private bool IsFirstMove()
         {
-            return _lastSymbol == ' ';
+            return _lastSymbol == EmptySpace;
         }
 
         //Primitive OBBSESSION - CODE SMELL
