@@ -9,7 +9,7 @@ namespace TicTacToe
     public class Board
     {
         private List<Tile> _plays = new List<Tile>();
-        Conversions conversions = new Conversions();
+        readonly Conversions conversions = new Conversions();
 
         public Board()
         {
@@ -18,22 +18,21 @@ namespace TicTacToe
                 for (int y = 0; y < 3; y++)
                 {
                     var position = conversions.coordsToPosition[$"{x},{y}"];
-                    _plays.Add(new Tile { Position = position, Player = EmptySpace });
+                    _plays.Add(new Tile ( position, EmptySpace ));
+                    // [BottomRight, EmptySpace]
                 }
             }
         }
-        //PRIMITIVE OBBSESSION
         public Tile CheckTileAt(Position position)
         {
             return _plays.Single(tile => tile.Position == position);
         }
-        //LONG PARAMETER LIST
-        //PRIMITIVE OBBSESSION
-        //DATA CLUMPS
+        //DataClump
         public void AddTileAt(Player player, Position position)
         {
-            //Message Chain ??????
-            _plays.Single(tile => tile.Position == position).Player = player;
+            _plays.Remove(new Tile(position,EmptySpace));
+            _plays.Add(new Tile(position,player));
+            
         }
 
         public bool IsRowTaken(Position position)

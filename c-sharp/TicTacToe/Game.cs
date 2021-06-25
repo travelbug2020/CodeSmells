@@ -8,13 +8,18 @@ namespace TicTacToe
     // Large Class
     public class Game
     {
-        //PRIMITIVE OBBSESSION
         private Player _lastSymbol = EmptySpace;
         private Board _board = new Board();
         private Position position;
         //LONG PARAMETER LIST
-        //PRIMITIVE OBBSESSION
         //DATA CLUMP ss
+
+        public void Play(Tile tile)
+        {
+
+        }
+
+
         public void Play(char symbol, int x, int y)
         {
             Conversions conversion = new Conversions();
