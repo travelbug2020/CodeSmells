@@ -1,31 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using static TicTacToe.Player;
 
-//board tile game
 namespace TicTacToe
 {
-    
     // DIVERGANT CHANGE
     // Large Class
+    
+
     public class Game
     {
-        
         //PRIMITIVE OBBSESSION
         private Player _lastSymbol = EmptySpace;
         private Board _board = new Board();
-        public Dictionary<char,Player> symbolToPlayer = new Dictionary<char, Player>()
-        {
-            {'X', X},
-            {'O', O}
-        };
+        
+
         //LONG PARAMETER LIST
         //PRIMITIVE OBBSESSION
         //DATA CLUMP ss
         public void Play(char symbol, int x, int y)
         {
-            var player = symbolToPlayer[symbol];
+            Conversions conversion = new Conversions();
+            var position = conversion.coordsToPosition[$"{x},{y}"];
+            var player = conversion.symbolToPlayer[symbol];
             EnsureValidMove(player, x, y);
             _lastSymbol = player;
             _board.AddTileAt(player, x, y);
