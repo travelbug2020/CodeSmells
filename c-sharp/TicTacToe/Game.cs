@@ -6,33 +6,30 @@ namespace TicTacToe
 {
     // DIVERGANT CHANGE
     // Large Class
-    
-
     public class Game
     {
         //PRIMITIVE OBBSESSION
         private Player _lastSymbol = EmptySpace;
         private Board _board = new Board();
-        
-
+        private Position position;
         //LONG PARAMETER LIST
         //PRIMITIVE OBBSESSION
         //DATA CLUMP ss
         public void Play(char symbol, int x, int y)
         {
             Conversions conversion = new Conversions();
-            var position = conversion.coordsToPosition[$"{x},{y}"];
+            position = conversion.coordsToPosition[$"{x},{y}"];
             var player = conversion.symbolToPlayer[symbol];
-            EnsureValidMove(player, x, y);
+            EnsureValidMove(player, position);
             _lastSymbol = player;
-            _board.AddTileAt(player, x, y);
+            _board.AddTileAt(player, position);
         }
 
-        private void EnsureValidMove(Player player, int x, int y)
+        private void EnsureValidMove(Player player, Position position)
         { 
             CheckIsInvalidFirstPlayer(player);
             CheckIsPlayerRepeated(player);
-            _board.IsPositionAlreadyPlayed(x, y);
+            _board.IsPositionAlreadyPlayed(position);
         }
 
         private void CheckIsInvalidFirstPlayer(Player player)
@@ -73,22 +70,14 @@ namespace TicTacToe
         //Primitive OBBSESSION - CODE SMELL ?? Can't do anything about this cause of test
         public char Winner()
         {
-            for (int x = 0; x <= 2; x++)
+            if (_board.IsWinningRow(position))
             {
-                if (_board.IsWinningRow(x))
-                {
-                    var playerInPosition = _board.GetSymbolAtPosition(x, 0).ToString();
-                    return char.Parse(playerInPosition);
-                }
+                var playerInPosition = _board.GetSymbolAtPosition(position).ToString();
+                return char.Parse(playerInPosition);
             }
 
             return ' ';
         }
-
-        
-
-
-
 
     }
 }
