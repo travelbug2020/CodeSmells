@@ -28,14 +28,14 @@ namespace TicTacToe
             var player = symbolToPlayer[symbol];
             EnsureValidMove(player, x, y);
             _lastSymbol = player;
-            _board.AddTileAt(symbol, x, y);
+            _board.AddTileAt(player, x, y);
         }
 
         private void EnsureValidMove(Player player, int x, int y)
         { 
             CheckIsInvalidFirstPlayer(player);
             CheckIsPlayerRepeated(player);
-            _board.CheckIsPositionAlreadyPlayed(x, y);
+            _board.IsPositionAlreadyPlayed(x, y);
         }
 
         private void CheckIsInvalidFirstPlayer(Player player)
@@ -73,14 +73,15 @@ namespace TicTacToe
             return _lastSymbol == EmptySpace;
         }
 
-        //Primitive OBBSESSION - CODE SMELL
+        //Primitive OBBSESSION - CODE SMELL ?? Can't do anything about this cause of test
         public char Winner()
         {
             for (int x = 0; x <= 2; x++)
             {
                 if (_board.IsWinningRow(x))
                 {
-                    return _board.GetSymbolAtPosition(x, 0);
+                    var playerInPosition = _board.GetSymbolAtPosition(x, 0).ToString();
+                    return char.Parse(playerInPosition);
                 }
             }
 

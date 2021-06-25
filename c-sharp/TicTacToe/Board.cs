@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static TicTacToe.Player;
 
 namespace TicTacToe
 {
@@ -15,7 +16,7 @@ namespace TicTacToe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    _plays.Add(new Tile { X = i, Y = j, Symbol = ' ' });
+                    _plays.Add(new Tile { X = i, Y = j, Player = EmptySpace });
                 }
             }
         }
@@ -27,46 +28,43 @@ namespace TicTacToe
         //LONG PARAMETER LIST
         //PRIMITIVE OBBSESSION
         //DATA CLUMPS
-        public void AddTileAt(char symbol, int x, int y)
+        public void AddTileAt(Player player, int x, int y)
         {
             //Message Chain ??????
-            _plays.Single(tile => tile.X == x && tile.Y == y).Symbol = symbol;
+            _plays.Single(tile => tile.X == x && tile.Y == y).Player = player;
         }
 
         public bool IsRowTaken(int x)
         {
-            return CheckTileAt(x, 0).Symbol != ' ' &&
-                   CheckTileAt(x, 1).Symbol != ' ' &&
-                   CheckTileAt(x, 2).Symbol != ' ';
+            return CheckTileAt(x, 0).Player != EmptySpace &&
+                   CheckTileAt(x, 1).Player != EmptySpace &&
+                   CheckTileAt(x, 2).Player != EmptySpace;
         }
 
         public bool HasRowGotSameSymbol(int x)
         {
-            return CheckTileAt(x, 0).Symbol ==
-                   CheckTileAt(x, 1).Symbol &&
-                   CheckTileAt(x, 2).Symbol ==
-                   CheckTileAt(x, 1).Symbol;
+            return CheckTileAt(x, 0).Player ==
+                   CheckTileAt(x, 1).Player &&
+                   CheckTileAt(x, 2).Player ==
+                   CheckTileAt(x, 1).Player;
         }
 
         public bool IsWinningRow(int x)
         {
             return IsRowTaken(x) && HasRowGotSameSymbol(x);
         }
-        public char GetSymbolAtPosition(int x, int y)
+        public Player GetSymbolAtPosition(int x, int y)
         {
-            return CheckTileAt(x, y).Symbol;
+            return CheckTileAt(x, y).Player;
         }
-        public bool IsPositionAlreadyPlayed(int x, int y)
+        public void IsPositionAlreadyPlayed(int x, int y)
         {
-            return CheckTileAt(x, y).Symbol != ' ';
-        }
-
-        public void CheckIsPositionAlreadyPlayed(int x, int y)
-        {
-            if (IsPositionAlreadyPlayed(x, y))
+            if (CheckTileAt(x, y).Player != EmptySpace)
             {
                 throw new Exception("Invalid position");
             }
+            
         }
+
     }
 }
