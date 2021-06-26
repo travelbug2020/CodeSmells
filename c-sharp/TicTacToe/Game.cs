@@ -25,11 +25,13 @@ namespace TicTacToe
             Conversions conversion = new Conversions();
             position = conversion.coordsToPosition[$"{x},{y}"];
             var player = conversion.symbolToPlayer[symbol];
-            EnsureValidMove(player, position);
+            EnsureValidMove(player, position); 
             _lastSymbol = player;
-            _board.AddTileAt(player, position);
+            Tile tile = new Tile(position,player);
+            _board.AddTileAt(tile);
         }
 
+        //data clump
         private void EnsureValidMove(Player player, Position position)
         { 
             CheckIsInvalidFirstPlayer(player);

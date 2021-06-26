@@ -28,10 +28,10 @@ namespace TicTacToe
             return _plays.Single(tile => tile.Position == position);
         }
         //DataClump
-        public void AddTileAt(Player player, Position position)
+        public void AddTileAt(Tile tile)
         {
-            _plays.Remove(new Tile(position,EmptySpace));
-            _plays.Add(new Tile(position,player));
+            _plays.Remove(new Tile(tile.Position,EmptySpace));
+            _plays.Add(tile);
             
         }
 
