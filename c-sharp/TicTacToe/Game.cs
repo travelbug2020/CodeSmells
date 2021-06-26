@@ -4,7 +4,6 @@ using static TicTacToe.Player;
 
 namespace TicTacToe
 {
-    // DIVERGANT CHANGE
     // Large Class
     public class Game
     {
