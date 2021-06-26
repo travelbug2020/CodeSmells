@@ -19,7 +19,6 @@ namespace TicTacToe
                 {
                     var position = conversions.coordsToPosition[$"{x},{y}"];
                     _plays.Add(new Tile ( position, EmptySpace ));
-                    // [BottomRight, EmptySpace]
                 }
             }
         }
@@ -27,7 +26,7 @@ namespace TicTacToe
         {
             return _plays.Single(tile => tile.Position == position);
         }
-        //DataClump
+        
         public void AddTileAt(Tile tile)
         {
             _plays.Remove(new Tile(tile.Position,EmptySpace));

@@ -25,18 +25,17 @@ namespace TicTacToe
             Conversions conversion = new Conversions();
             position = conversion.coordsToPosition[$"{x},{y}"];
             var player = conversion.symbolToPlayer[symbol];
-            EnsureValidMove(player, position); 
+            var tile = new Tile(position, player);
+            EnsureValidMove(tile); 
             _lastSymbol = player;
-            Tile tile = new Tile(position,player);
             _board.AddTileAt(tile);
         }
 
-        //data clump
-        private void EnsureValidMove(Player player, Position position)
+        private void EnsureValidMove(Tile tile)
         { 
-            CheckIsInvalidFirstPlayer(player);
-            CheckIsPlayerRepeated(player);
-            _board.IsPositionAlreadyPlayed(position);
+            CheckIsInvalidFirstPlayer(tile.Player);
+            CheckIsPlayerRepeated(tile.Player);
+            _board.IsPositionAlreadyPlayed(tile.Position);
         }
 
         private void CheckIsInvalidFirstPlayer(Player player)
