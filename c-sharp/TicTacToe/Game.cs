@@ -11,14 +11,13 @@ namespace TicTacToe
         private Player _lastSymbol = EmptySpace;
         private Board _board = new Board();
         private Position position;
-        //LONG PARAMETER LIST
-        //DATA CLUMP ss
 
         public void Play(Tile tile)
         {
-
+            EnsureValidMove(tile);
+            _lastSymbol = tile.Player;
+            _board.AddTileAt(tile);
         }
-
 
         public void Play(char symbol, int x, int y)
         {
@@ -74,6 +73,17 @@ namespace TicTacToe
         }
 
         //Primitive OBBSESSION - CODE SMELL ?? Can't do anything about this cause of test
+
+        public Player Winner_()
+        {
+            if (_board.IsWinningRow(position))
+            {
+                var playerInPosition = _board.GetSymbolAtPosition(position);
+                return playerInPosition;
+            }
+
+            return EmptySpace;
+        }
         public char Winner()
         {
             if (_board.IsWinningRow(position))
