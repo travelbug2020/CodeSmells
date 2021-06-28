@@ -5,7 +5,7 @@ using static TicTacToe.Player;
 
 namespace TicTacToe
 {
-    // SHOT GUN SURGERY
+    
     public class Board
     {
         public List<Tile> _plays = new List<Tile>();

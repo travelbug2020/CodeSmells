@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using static TicTacToe.Player;
 
 namespace TicTacToe
@@ -71,8 +70,6 @@ namespace TicTacToe
             return _lastSymbol == EmptySpace;
         }
 
-        //Primitive OBBSESSION - CODE SMELL ?? Can't do anything about this cause of test
-
         public Player Winner_()
         {
             if (_board.IsWinningRow(position))
@@ -85,13 +82,8 @@ namespace TicTacToe
         }
         public char Winner()
         {
-            if (_board.IsWinningRow(position))
-            {
-                var playerInPosition = _board.GetSymbolAtPosition(position).ToString();
-                return char.Parse(playerInPosition);
-            }
-
-            return ' ';
+            var winner = Winner_();
+            return char.Parse(winner.ToString());
         }
 
     }
