@@ -7,7 +7,7 @@ namespace TicTacToe
     {
         private Player _lastSymbol = EmptySpace;
         private readonly Board _board = new Board();
-        private Position _position;
+        private Position _position; // remove field
 
         public void Play(Tile tile)
         {
