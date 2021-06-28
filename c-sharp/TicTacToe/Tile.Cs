@@ -7,8 +7,8 @@
             Position = position;
             Player = player;
         }
-        public Position Position;
-        public Player Player { get; set; }
+        public readonly Position Position;
+        public readonly Player Player;
 
         protected bool Equals(Tile other)
         {

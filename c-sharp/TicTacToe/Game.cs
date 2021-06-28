@@ -3,17 +3,16 @@ using static TicTacToe.Player;
 
 namespace TicTacToe
 {
-    // Large Class
     public class Game
     {
         private Player _lastSymbol = EmptySpace;
-        private Board _board = new Board();
-        private Position position;
+        private readonly Board _board = new Board();
+        private Position _position;
 
         public void Play(Tile tile)
         {
             EnsureValidMove(tile);
-            position = tile.Position;
+            _position = tile.Position;
             _lastSymbol = tile.Player;
             _board.AddTileAt(tile);
         }
@@ -62,9 +61,9 @@ namespace TicTacToe
 
         public Player Winner()
         {
-            if (_board.IsWinningRow(position))
+            if (_board.IsWinningRow(_position))
             {
-                var playerInPosition = _board.GetSymbolAtPosition(position);
+                var playerInPosition = _board.GetSymbolAtPosition(_position);
                 return playerInPosition;
             }
 
