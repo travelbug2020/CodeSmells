@@ -9,29 +9,29 @@ namespace TicTacToe
     
     public class Board
     {
-        public List<Tile> _plays = new List<Tile>();
+        private readonly List<Tile> _tiles = new List<Tile>();
 
         public Board()
         {
-            _plays.Add(new Tile(BottomLeft,EmptySpace));
-            _plays.Add(new Tile(BottomMiddle,EmptySpace));
-            _plays.Add(new Tile(BottomRight,EmptySpace));
-            _plays.Add(new Tile(CenterLeft,EmptySpace));
-            _plays.Add(new Tile(CenterMiddle,EmptySpace));
-            _plays.Add(new Tile(CenterRight,EmptySpace));
-            _plays.Add(new Tile(TopLeft,EmptySpace));
-            _plays.Add(new Tile(TopMiddle,EmptySpace));
-            _plays.Add(new Tile(TopRight,EmptySpace));
+            _tiles.Add(new Tile(BottomLeft,EmptySpace));
+            _tiles.Add(new Tile(BottomMiddle,EmptySpace));
+            _tiles.Add(new Tile(BottomRight,EmptySpace));
+            _tiles.Add(new Tile(CenterLeft,EmptySpace));
+            _tiles.Add(new Tile(CenterMiddle,EmptySpace));
+            _tiles.Add(new Tile(CenterRight,EmptySpace));
+            _tiles.Add(new Tile(TopLeft,EmptySpace));
+            _tiles.Add(new Tile(TopMiddle,EmptySpace));
+            _tiles.Add(new Tile(TopRight,EmptySpace));
         }
         public Tile CheckTileAt(Position position)
         {
-            return _plays.Single(tile => tile.Position == position);
+            return _tiles.Single(tile => tile.Position == position);
         }
         
         public void AddTileAt(Tile tile)
         {
-            _plays.Remove(new Tile(tile.Position,EmptySpace));
-            _plays.Add(tile);
+            _tiles.Remove(new Tile(tile.Position,EmptySpace));
+            _tiles.Add(tile);
             
         }
 

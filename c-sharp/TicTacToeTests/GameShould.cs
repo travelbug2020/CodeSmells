@@ -40,7 +40,7 @@ namespace TicTacToeTests
         {
             game.Play(new Tile(BottomLeft,X));
 
-            Action wrongPlay = () => game.Play(Tile.From('O', 0, 0));
+            Action wrongPlay = () => game.Play(new Tile(BottomLeft, O));
 
             var exception = Assert.Throws<Exception>(wrongPlay);
             Assert.Equal("Invalid position", exception.Message);
