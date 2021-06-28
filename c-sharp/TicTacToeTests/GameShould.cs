@@ -2,6 +2,7 @@ using System;
 using Xunit;
 using TicTacToe;
 using static TicTacToe.Player;
+using static TicTacToe.Position;
 
 namespace TicTacToeTests
 {
@@ -60,30 +61,30 @@ namespace TicTacToeTests
         [Fact]
         public void DeclarePlayerXAsAWinnerIfThreeInTopRow()
         {
-            game.Play(Tile.From('X', 0, 0));
-            game.Play(Tile.From('O', 1, 0));
-            game.Play(Tile.From('X', 0, 1));
-            game.Play(Tile.From('O', 1, 1));
-            game.Play(Tile.From('X', 0, 2));
+            game.Play(new Tile(BottomLeft, X));
+            game.Play(new Tile(BottomMiddle, O));
+            game.Play(new Tile(CenterLeft, X));
+            game.Play(new Tile(CenterMiddle, O));
+            game.Play(new Tile(TopLeft, X));
 
-            var winner = char.Parse(game.Winner().ToString());
+            var winner = game.Winner();
 
-            Assert.Equal('X', winner);
+            Assert.Equal(X, winner);
         }
 
         [Fact]
         public void DeclarePlayerOAsAWinnerIfThreeInTopRow()
         {
-            game.Play(Tile.From('X', 2, 2));
-            game.Play(Tile.From('O', 0, 0));
-            game.Play(Tile.From('X', 1, 0));
-            game.Play(Tile.From('O', 0, 1));
-            game.Play(Tile.From('X', 1, 1));
-            game.Play(Tile.From('O', 0, 2));
+            game.Play(new Tile(TopRight, X));
+            game.Play(new Tile(BottomLeft, O));
+            game.Play(new Tile(BottomMiddle, X));
+            game.Play(new Tile(CenterLeft, O));
+            game.Play(new Tile(CenterMiddle, X));
+            game.Play(new Tile(TopLeft, O));
 
-            var winner = char.Parse(game.Winner().ToString());
+            var winner = game.Winner();
 
-            Assert.Equal('O', winner);
+            Assert.Equal(O, winner);
         }
 
         [Fact]
@@ -110,9 +111,9 @@ namespace TicTacToeTests
             game.Play(Tile.From('X', 2, 1));
             game.Play(Tile.From('O', 1, 2));
 
-            var winner = char.Parse(game.Winner().ToString());
+            var winner = game.Winner();
 
-            Assert.Equal('O', winner);
+            Assert.Equal(O, winner);
         }
 
         [Fact]
@@ -124,9 +125,9 @@ namespace TicTacToeTests
             game.Play(Tile.From('O', 0, 1));
             game.Play(Tile.From('X', 2, 2));
 
-            var winner = char.Parse(game.Winner().ToString());
+            var winner = game.Winner();
 
-            Assert.Equal('X', winner);
+            Assert.Equal(X, winner);
         }
 
         [Fact]
@@ -139,9 +140,9 @@ namespace TicTacToeTests
             game.Play(Tile.From('X', 1, 1));
             game.Play(Tile.From('O', 2, 2));
 
-            var winner = char.Parse(game.Winner().ToString());
+            var winner = game.Winner();
 
-            Assert.Equal('O', winner);
+            Assert.Equal(O, winner);
         }
     }
 }
