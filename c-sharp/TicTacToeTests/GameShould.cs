@@ -1,6 +1,7 @@
 using System;
 using Xunit;
 using TicTacToe;
+using static TicTacToe.Player;
 
 namespace TicTacToeTests
 {
@@ -65,7 +66,7 @@ namespace TicTacToeTests
             game.Play('O', 1, 1);
             game.Play('X', 0, 2);
 
-            var winner = game.Winner();
+            var winner = char.Parse(game.Winner().ToString());
 
             Assert.Equal('X', winner);
         }
@@ -80,7 +81,7 @@ namespace TicTacToeTests
             game.Play('X', 1, 1);
             game.Play('O', 0, 2);
 
-            var winner = game.Winner();
+            var winner = char.Parse(game.Winner().ToString());
 
             Assert.Equal('O', winner);
         }
@@ -96,7 +97,7 @@ namespace TicTacToeTests
 
             var winner = game.Winner();
 
-            Assert.Equal('X', winner);
+            Assert.Equal(X, winner);
         }
 
         [Fact]
@@ -109,7 +110,7 @@ namespace TicTacToeTests
             game.Play('X', 2, 1);
             game.Play('O', 1, 2);
 
-            var winner = game.Winner();
+            var winner = char.Parse(game.Winner().ToString());
 
             Assert.Equal('O', winner);
         }
@@ -123,7 +124,7 @@ namespace TicTacToeTests
             game.Play('O', 0, 1);
             game.Play('X', 2, 2);
 
-            var winner = game.Winner();
+            var winner = char.Parse(game.Winner().ToString());
 
             Assert.Equal('X', winner);
         }
@@ -138,7 +139,7 @@ namespace TicTacToeTests
             game.Play('X', 1, 1);
             game.Play('O', 2, 2);
 
-            var winner = game.Winner();
+            var winner = char.Parse(game.Winner().ToString());
 
             Assert.Equal('O', winner);
         }

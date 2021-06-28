@@ -70,7 +70,7 @@ namespace TicTacToe
             return _lastSymbol == EmptySpace;
         }
 
-        public Player Winner_()
+        public Player Winner()
         {
             if (_board.IsWinningRow(position))
             {
@@ -80,11 +80,5 @@ namespace TicTacToe
 
             return EmptySpace;
         }
-        public char Winner()
-        {
-            var winner = Winner_();
-            return char.Parse(winner.ToString());
-        }
-
     }
 }
