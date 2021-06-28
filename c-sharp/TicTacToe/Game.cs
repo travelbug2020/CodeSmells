@@ -13,6 +13,7 @@ namespace TicTacToe
         public void Play(Tile tile)
         {
             EnsureValidMove(tile);
+            position = tile.Position;
             _lastSymbol = tile.Player;
             _board.AddTileAt(tile);
         }
@@ -20,10 +21,11 @@ namespace TicTacToe
         public void Play(char symbol, int x, int y)
         {
             var tile = Tile.From(symbol, x, y);
-            this.position = tile.Position;
-            EnsureValidMove(tile); 
-            _lastSymbol = Conversions.ToPlayer(symbol);
-            _board.AddTileAt(tile);
+            Play(tile);
+            
+            //EnsureValidMove(tile); 
+            //_lastSymbol = Conversions.ToPlayer(symbol);
+            //_board.AddTileAt(tile);
         }
 
         private void EnsureValidMove(Tile tile)
