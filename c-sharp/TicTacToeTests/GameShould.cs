@@ -18,7 +18,7 @@ namespace TicTacToeTests
         [Fact]
         public void NotAllowPlayerOToPlayFirst()
         {
-            Action wrongPlay = () => game.Play(Tile.From('O', 0, 0));
+            Action wrongPlay = () => game.Play(new Tile(BottomLeft, O));
 
             var exception = Assert.Throws<Exception>(wrongPlay);
             Assert.Equal("Invalid first player", exception.Message);
@@ -27,9 +27,9 @@ namespace TicTacToeTests
         [Fact]
         public void NotAllowPlayerXToPlayTwiceInARow()
         {
-            game.Play(Tile.From('X', 0, 0));
+            game.Play(new Tile(BottomLeft, X));
             
-            Action wrongPlay = () => game.Play(Tile.From('X', 1, 0));
+            Action wrongPlay = () => game.Play(new Tile(BottomMiddle,X));
 
             var exception = Assert.Throws<Exception>(wrongPlay);
             Assert.Equal("Invalid next player", exception.Message);
@@ -38,7 +38,7 @@ namespace TicTacToeTests
         [Fact]
         public void NotAllowPlayerToPlayInLastPlayedPosition()
         {
-            game.Play(Tile.From('X', 0, 0));
+            game.Play(new Tile(BottomLeft,X));
 
             Action wrongPlay = () => game.Play(Tile.From('O', 0, 0));
 
@@ -49,10 +49,10 @@ namespace TicTacToeTests
         [Fact]
         public void NotAllowPlayerToPlayInAnyPlayedPosition()
         {
-            game.Play(Tile.From('X', 0, 0));
-            game.Play(Tile.From('O', 1, 0));
+            game.Play(new Tile(BottomLeft, X));
+            game.Play(new Tile(BottomMiddle, O));
 
-            Action wrongPlay = () => game.Play(Tile.From('X', 0, 0));
+            Action wrongPlay = () => game.Play(new Tile(BottomLeft, X));
 
             var exception = Assert.Throws<Exception>(wrongPlay);
             Assert.Equal("Invalid position", exception.Message);
@@ -90,11 +90,11 @@ namespace TicTacToeTests
         [Fact]
         public void DeclarePlayerXAsAWinnerIfThreeInMiddleRow()
         {
-            game.Play(Tile.From('X', 1, 0));
-            game.Play(Tile.From('O', 0, 0));
-            game.Play(Tile.From('X', 1, 1));
-            game.Play(Tile.From('O', 0, 1));
-            game.Play(Tile.From('X', 1, 2));
+            game.Play(new Tile(BottomMiddle, X));
+            game.Play(new Tile(BottomLeft, O));
+            game.Play(new Tile(CenterMiddle, X));
+            game.Play(new Tile(CenterLeft, O));
+            game.Play(new Tile(TopMiddle, X));
 
             var winner = game.Winner();
 
@@ -104,12 +104,12 @@ namespace TicTacToeTests
         [Fact]
         public void DeclarePlayerOAsAWinnerIfThreeInMiddleRow()
         {
-            game.Play(Tile.From('X', 0, 0));
-            game.Play(Tile.From('O', 1, 0));
-            game.Play(Tile.From('X', 2, 0));
-            game.Play(Tile.From('O', 1, 1));
-            game.Play(Tile.From('X', 2, 1));
-            game.Play(Tile.From('O', 1, 2));
+            game.Play(new Tile(BottomLeft, X));
+            game.Play(new Tile(BottomMiddle, O));
+            game.Play(new Tile(BottomRight, X));
+            game.Play(new Tile(CenterMiddle, O));
+            game.Play(new Tile(CenterRight, X));
+            game.Play(new Tile(TopMiddle, O));
 
             var winner = game.Winner();
 
@@ -119,12 +119,12 @@ namespace TicTacToeTests
         [Fact]
         public void DeclarePlayerXAsAWinnerIfThreeInBottomRow()
         {
-            game.Play(Tile.From('X', 2, 0));
-            game.Play(Tile.From('O', 0, 0));
-            game.Play(Tile.From('X', 2, 1));
-            game.Play(Tile.From('O', 0, 1));
-            game.Play(Tile.From('X', 2, 2));
-
+            game.Play(new Tile(BottomRight, X));
+            game.Play(new Tile(BottomLeft, O));
+            game.Play(new Tile(CenterRight, X));
+            game.Play(new Tile(CenterLeft, O));
+            game.Play(new Tile(TopRight, X));
+            
             var winner = game.Winner();
 
             Assert.Equal(X, winner);
@@ -133,12 +133,12 @@ namespace TicTacToeTests
         [Fact]
         public void DeclarePlayerOAsAWinnerIfThreeInBottomRow()
         {
-            game.Play(Tile.From('X', 0, 0));
-            game.Play(Tile.From('O', 2, 0));
-            game.Play(Tile.From('X', 1, 0));
-            game.Play(Tile.From('O', 2, 1));
-            game.Play(Tile.From('X', 1, 1));
-            game.Play(Tile.From('O', 2, 2));
+            game.Play(new Tile(BottomLeft, X));
+            game.Play(new Tile(BottomRight, O));
+            game.Play(new Tile(BottomMiddle, X));
+            game.Play(new Tile(CenterRight, O));
+            game.Play(new Tile(CenterMiddle, X));
+            game.Play(new Tile(TopRight, O));
 
             var winner = game.Winner();
 
