@@ -31,21 +31,21 @@ namespace TicTacToe
 
         private void EnsureValidMove(Tile tile)
         { 
-            CheckIsInvalidFirstPlayer(tile.Player);
-            CheckIsPlayerRepeated(tile.Player);
-            _board.IsPositionAlreadyPlayed(tile.Position);
+            CheckIsInvalidFirstPlayer(tile);
+            CheckIsPlayerRepeated(tile);
+            _board.IsPositionAlreadyPlayed(tile);
         }
 
-        private void CheckIsInvalidFirstPlayer(Player player)
+        private void CheckIsInvalidFirstPlayer(Tile tile)
         {
-            if (IsInvalidFirstPlayer(player))
+            if (IsInvalidFirstPlayer(tile.Player))
             {
                 throw new Exception("Invalid first player");
             }
         }
-        private void CheckIsPlayerRepeated(Player player)
+        private void CheckIsPlayerRepeated(Tile tile)
         {
-            if (IsPlayerRepeated(player))
+            if (IsPlayerRepeated(tile.Player))
             {
                 throw new Exception("Invalid next player");
             }

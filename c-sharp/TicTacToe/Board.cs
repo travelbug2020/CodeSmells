@@ -8,7 +8,7 @@ namespace TicTacToe
     // SHOT GUN SURGERY
     public class Board
     {
-        private List<Tile> _plays = new List<Tile>();
+        public List<Tile> _plays = new List<Tile>();
         readonly Conversions conversions = new Conversions();
 
         public Board()
@@ -57,9 +57,9 @@ namespace TicTacToe
         {
             return CheckTileAt(position).Player;
         }
-        public void IsPositionAlreadyPlayed(Position position)
+        public void IsPositionAlreadyPlayed(Tile tile)
         {
-            if (CheckTileAt(position).Player != EmptySpace)
+            if (CheckTileAt(tile.Position).Player != EmptySpace)
             {
                 throw new Exception("Invalid position");
             }
