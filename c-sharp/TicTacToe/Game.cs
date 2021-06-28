@@ -18,16 +18,6 @@ namespace TicTacToe
             _board.AddTileAt(tile);
         }
 
-        public void Play(char symbol, int x, int y)
-        {
-            var tile = Tile.From(symbol, x, y);
-            Play(tile);
-            
-            //EnsureValidMove(tile); 
-            //_lastSymbol = Conversions.ToPlayer(symbol);
-            //_board.AddTileAt(tile);
-        }
-
         private void EnsureValidMove(Tile tile)
         { 
             CheckIsInvalidFirstPlayer(tile);
