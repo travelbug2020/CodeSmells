@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using static TicTacToe.Player;
+using static TicTacToe.Position;
 
 namespace TicTacToe
 {
@@ -12,13 +13,15 @@ namespace TicTacToe
 
         public Board()
         {
-            for (int x = 0; x < 3; x++)
-            {
-                for (int y = 0; y < 3; y++)
-                {
-                    _plays.Add(Tile.From(' ',x,y));
-                }
-            }
+            _plays.Add(new Tile(BottomLeft,EmptySpace));
+            _plays.Add(new Tile(BottomMiddle,EmptySpace));
+            _plays.Add(new Tile(BottomRight,EmptySpace));
+            _plays.Add(new Tile(CenterLeft,EmptySpace));
+            _plays.Add(new Tile(CenterMiddle,EmptySpace));
+            _plays.Add(new Tile(CenterRight,EmptySpace));
+            _plays.Add(new Tile(TopLeft,EmptySpace));
+            _plays.Add(new Tile(TopMiddle,EmptySpace));
+            _plays.Add(new Tile(TopRight,EmptySpace));
         }
         public Tile CheckTileAt(Position position)
         {
