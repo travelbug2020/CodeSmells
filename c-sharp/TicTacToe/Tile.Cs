@@ -4,8 +4,8 @@
     {
         public Tile(Position position, Player player)
         {
-            this.Position = position;
-            this.Player = player;
+            Position = position;
+            Player = player;
         }
         public Position Position;
         public Player Player { get; set; }
@@ -29,11 +29,6 @@
             {
                 return ((int) Position * 397) ^ (int) Player;
             }
-        }
-
-        public static Tile From(char symbol, int x, int y)
-        {
-            return new Tile(Conversions.ToPosition(x, y), Conversions.ToPlayer(symbol));
         }
     }
 }
