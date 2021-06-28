@@ -19,12 +19,10 @@ namespace TicTacToe
 
         public void Play(char symbol, int x, int y)
         {
-            Conversions conversion = new Conversions();
-            position = conversion.coordsToPosition[$"{x},{y}"];
-            var player = conversion.symbolToPlayer[symbol];
-            var tile = new Tile(position, player);
+            var tile = Tile.From(symbol, x, y);
+            this.position = tile.Position;
             EnsureValidMove(tile); 
-            _lastSymbol = player;
+            _lastSymbol = Conversions.ToPlayer(symbol);
             _board.AddTileAt(tile);
         }
 

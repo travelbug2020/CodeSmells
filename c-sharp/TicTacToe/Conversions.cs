@@ -4,15 +4,16 @@ using static TicTacToe.Position;
 
 namespace TicTacToe
 {
-    public class Conversions
+    public static class Conversions
     {
-        public readonly Dictionary<char, Player> symbolToPlayer = new Dictionary<char, Player>()
+        public static readonly Dictionary<char, Player> symbolToPlayer = new Dictionary<char, Player>()
         {
             {'X', X},
-            {'O', O}
+            {'O', O},
+            {' ', EmptySpace}
         };
 
-        public Dictionary<string, Position> coordsToPosition = new Dictionary<string, Position>()
+        public static Dictionary<string, Position> coordsToPosition = new Dictionary<string, Position>()
         {
             {"0,0",BottomLeft},
             {"0,1",CenterLeft},
@@ -24,5 +25,16 @@ namespace TicTacToe
             {"2,1",CenterRight},
             {"2,2",TopRight}
         };
+
+
+        public static Position ToPosition(int x, int y)
+        {
+            return coordsToPosition[$"{x},{y}"];
+        }
+
+        public static Player ToPlayer(char symbol)
+        {
+            return symbolToPlayer[symbol];
+        }
     }
 }

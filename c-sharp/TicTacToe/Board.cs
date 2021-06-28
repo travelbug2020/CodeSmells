@@ -9,7 +9,6 @@ namespace TicTacToe
     public class Board
     {
         public List<Tile> _plays = new List<Tile>();
-        readonly Conversions conversions = new Conversions();
 
         public Board()
         {
@@ -17,8 +16,7 @@ namespace TicTacToe
             {
                 for (int y = 0; y < 3; y++)
                 {
-                    var position = conversions.coordsToPosition[$"{x},{y}"];
-                    _plays.Add(new Tile ( position, EmptySpace ));
+                    _plays.Add(Tile.From(' ',x,y));
                 }
             }
         }

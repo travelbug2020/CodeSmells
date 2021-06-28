@@ -30,5 +30,10 @@
                 return ((int) Position * 397) ^ (int) Player;
             }
         }
+
+        public static Tile From(char symbol, int x, int y)
+        {
+            return new Tile(Conversions.ToPosition(x, y), Conversions.ToPlayer(symbol));
+        }
     }
 }
