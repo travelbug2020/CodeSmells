@@ -9,6 +9,19 @@ namespace TicTacToe
     
     public class Board
     {
+        public Board()
+        {
+            _tiles.Add(new Tile(BottomLeft, EmptySpace));
+            _tiles.Add(new Tile(BottomMiddle, EmptySpace));
+            _tiles.Add(new Tile(BottomRight, EmptySpace));
+            _tiles.Add(new Tile(CenterLeft, EmptySpace));
+            _tiles.Add(new Tile(CenterMiddle, EmptySpace));
+            _tiles.Add(new Tile(CenterRight, EmptySpace));
+            _tiles.Add(new Tile(TopLeft, EmptySpace));
+            _tiles.Add(new Tile(TopMiddle, EmptySpace));
+            _tiles.Add(new Tile(TopRight, EmptySpace));
+        }
+
         private readonly List<Tile> _tiles = new List<Tile>();
         public readonly List<Position[]> WinningPositions = new List<Position[]>
         {
@@ -23,18 +36,6 @@ namespace TicTacToe
 
         };
 
-        public Board()
-        {
-            _tiles.Add(new Tile(BottomLeft,EmptySpace));
-            _tiles.Add(new Tile(BottomMiddle,EmptySpace));
-            _tiles.Add(new Tile(BottomRight,EmptySpace));
-            _tiles.Add(new Tile(CenterLeft,EmptySpace));
-            _tiles.Add(new Tile(CenterMiddle,EmptySpace));
-            _tiles.Add(new Tile(CenterRight,EmptySpace));
-            _tiles.Add(new Tile(TopLeft,EmptySpace));
-            _tiles.Add(new Tile(TopMiddle,EmptySpace));
-            _tiles.Add(new Tile(TopRight,EmptySpace));
-        }
         public Tile CheckTileAt(Position position)
         {
             return _tiles.Single(tile => tile.Position == position);
@@ -49,20 +50,15 @@ namespace TicTacToe
 
         public Player IsWinningPositionFound()
         {
-            foreach (var position in WinningPositions)
+            foreach (var position in WinningPositions.Where(position => CheckTileAt(position[0]).Player ==
+                                                                        CheckTileAt(position[1]).Player &&
+                                                                        CheckTileAt(position[1]).Player ==
+                                                                        CheckTileAt(position[2]).Player && 
+                                                                        CheckTileAt(position[2]).Player != EmptySpace))
             {
-                if (
-                    CheckTileAt(position[0]).Player ==
-                    CheckTileAt(position[1]).Player &&
-                    CheckTileAt(position[1]).Player ==
-                    CheckTileAt(position[2]).Player && 
-                    CheckTileAt(position[2]).Player != EmptySpace)
-                {
-                    return CheckTileAt(position[0]).Player;
-                }
-
+                return CheckTileAt(position[0]).Player;
             }
-            
+
             return EmptySpace;
         }
 
