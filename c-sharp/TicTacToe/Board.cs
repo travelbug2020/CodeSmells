@@ -10,6 +10,18 @@ namespace TicTacToe
     public class Board
     {
         private readonly List<Tile> _tiles = new List<Tile>();
+        public readonly List<Position[]> WinningPositions = new List<Position[]>
+        {
+            new[] {TopLeft, TopMiddle, TopRight},
+            new[] {CenterLeft,CenterMiddle,CenterRight},
+            new[] {BottomLeft,BottomMiddle,BottomRight},
+            new[] {TopLeft,CenterLeft,BottomLeft},
+            new[] {TopMiddle,CenterMiddle,BottomMiddle},
+            new[] {TopRight,CenterRight,BottomRight},
+            new[] {TopRight,CenterMiddle,BottomLeft},
+            new[] {TopLeft,CenterMiddle,BottomRight}
+
+        };
 
         public Board()
         {
@@ -35,6 +47,7 @@ namespace TicTacToe
             
         }
 
+        
         public bool IsRowTaken(Position position)
         {
             return CheckTileAt(position).Player != EmptySpace &&
@@ -48,6 +61,26 @@ namespace TicTacToe
                    CheckTileAt(position).Player &&
                    CheckTileAt(position).Player ==
                    CheckTileAt(position).Player;
+        }
+
+        public Player IsWinningPositionFound()
+        {
+            foreach (var position in WinningPositions)
+            {
+                if (CheckTileAt(position[0]).Player != EmptySpace &&
+                    CheckTileAt(position[1]).Player != EmptySpace &&
+                    CheckTileAt(position[2]).Player != EmptySpace &&
+                    CheckTileAt(position[0]).Player ==
+                    CheckTileAt(position[1]).Player &&
+                    CheckTileAt(position[1]).Player ==
+                    CheckTileAt(position[2]).Player)
+                {
+                    return CheckTileAt(position[0]).Player;
+                }
+
+            }
+            
+            return EmptySpace;
         }
 
         public bool IsWinningRow(Position position)

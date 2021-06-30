@@ -61,13 +61,8 @@ namespace TicTacToe
 
         public Player Winner()
         {
-            if (_board.IsWinningRow(_position))
-            {
-                var playerInPosition = _board.GetSymbolAtPosition(_position);
-                return playerInPosition;
-            }
-
-            return EmptySpace;
+            var p = _board.IsWinningPositionFound();
+            return p;
         }
     }
 }
